@@ -1,10 +1,8 @@
 # saucenaopy
----
 SauceNAO API wrapper for Python
 
 ## Setup
-1. run ```pip install -r requirements.txt``` to install dependencies
-2. from saucenaopy import SauceNAO
+1. from saucenaopy import SauceNAO
 
 ## Example
 ### Default
