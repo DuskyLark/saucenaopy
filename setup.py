@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
   name='saucenaopy',
-  version='0.1',
+  version='0.1.11',
   description='Python SauceNAO API wrapper',
   url='https://github.com/ranthai/saucenaopy',
   author='ranthai',

@@ -1,2 +1,2 @@
 #!python
-import saucenao
+from saucenaopy import saucenaopy

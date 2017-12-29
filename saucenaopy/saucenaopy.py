@@ -16,26 +16,22 @@ class SauceNAO:
     params['numres'] = numres
     self.params = params
 
-    self.shortlimiter = ShortLimiter(shortlimit)
-    self.longlimiter = LongLimiter(longlimit)
+    self.limiters = (ShortLimiter(shortlimit), LongLimiter(longlimit))
 
   def get_sauce(self, url):
-    sthread = self.shortlimiter.acquire()
-    lthread = self.longlimiter.acquire()
-    threads = (sthread, lthread)
+    threads = [limiter.acquire() for limiter in self.limiters]
 
     self.params['url'] = url
-    result = requests.get('https://saucenao.com/search.php', params=self.params)
+    response = requests.get('https://saucenao.com/search.php', params=self.params)
 
-    if self.verify_http_status(result, threads):
-      data = self.load_json(result)
+    if self.verify_http_status(response, threads):
+      data = self.load_json(response)
       if data is not None and self.verify_header_status(data, threads):
-        return result.text
+        return response.text
 
-  def verify_http_status(self, result, threads):
-    if result.status_code != 200:
-      for thread in threads:
-        thread.cancel()
+  def verify_http_status(self, response, threads):
+    if response.status_code != 200:
+      [thread.cancel() for thread in threads]
       print 'HTTP Status', str(result.status_code)
       return False
     else:
@@ -44,8 +40,7 @@ class SauceNAO:
   def verify_header_status(self, data, threads):
     header = data['header']
     if header['status'] != 0:
-      for thread in threads:
-        thread.cancel()
+      [thread.cancel() for thread in threads]
       print 'Header Status', str(header['status'])
       return False
     else:

@@ -1,1 +1,1 @@
-from saucenao.py import SauceNAO
+from saucenaopy import SauceNAO
