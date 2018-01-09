@@ -1,6 +1,8 @@
 # saucenaopy
 SauceNAO API wrapper for Python
 
+[![PyPI](https://img.shields.io/pypi/v/nine.svg)]()
+
 ## Example
 ### Default
 ```python
