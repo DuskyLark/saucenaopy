@@ -1,7 +1,7 @@
 # saucenaopy
 SauceNAO API wrapper for Python
 
-[![PyPI](https://img.shields.io/pypi/v/nine.svg)]()
+[![PyPI](https://img.shields.io/pypi/v/saucenaopy.svg)]()
 
 ## Example
 ### Default
